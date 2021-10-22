@@ -1,0 +1,16 @@
+    * Получение сертификата сайта "https://data.egov.kz/" во временное хранилище jssecacerts
+java --source 11 InstallCert.java data.egov.kz
+
+    * Экспорт из временного хранилища jssecacerts сертификата сайта в файл data.egov.kz.cer
+keytool -exportcert -alias data.egov.kz-1 -keystore jssecacerts -storepass changeit -file data.egov.kz.cer
+
+    * Добавление в системную Java сертификата сайта
+sudo keytool -importcert -alias data.egov.kz -cacerts -storepass changeit -file data.egov.kz.cer
+
+    * Список установленных сертификатов в системной Java в файл java_cacerts.dat
+keytool -list -cacerts -storepass changeit  > java_cacerts.dat
+
+    * Удаление сертифика сайта (если понадобится)
+sudo keytool -delete -alias data.egov.kz -cacerts -storepass changeit
+
+(!) вместо -cacerts может быть -keystore /usr/lib/ssl/certs/java/cacerts
