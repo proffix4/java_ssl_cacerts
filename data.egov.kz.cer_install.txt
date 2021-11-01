@@ -14,3 +14,4 @@ keytool -list -cacerts -storepass changeit  > java_cacerts.dat
 sudo keytool -delete -alias data.egov.kz -cacerts -storepass changeit
 
 (!) вместо -cacerts может быть -keystore /usr/lib/ssl/certs/java/cacerts
+                                         /etc/pki/java/cacerts
